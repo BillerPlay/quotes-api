@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/quotes")
+@RequestMapping("/api/quotes")
 public class QuoteController {
     private final QuoteService quoteService;
 
