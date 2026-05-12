@@ -39,6 +39,12 @@ public class Quote {
         this.createdAt = createdAt;
     }
 
+    public Quote(String author, String text, String category) {
+        this.author = author;
+        this.text = text;
+        this.category = category;
+    }
+
     //Getters and Setters
     public Long getId() {
         return id;
