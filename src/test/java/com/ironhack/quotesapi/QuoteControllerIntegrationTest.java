@@ -14,10 +14,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.ObjectMapper;
 
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -54,9 +54,10 @@ class QuoteControllerIntegrationTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.author").value("Marcus Aurelius"))
-                .andExpect(jsonPath("$.text").value("The impediment to action advances action."))
+                .andExpect(jsonPath("$.text")
+                        .value("The impediment to action advances action."))
                 .andExpect(jsonPath("$.category").value("philosophy"))
-                .andExpect(jsonPath("$.createdAt").exists());
+                .andExpect(jsonPath("$.created_at").exists());
     }
 
     @Test
