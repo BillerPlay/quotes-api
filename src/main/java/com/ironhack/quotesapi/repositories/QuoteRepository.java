@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuoteRepository extends JpaRepository <Quote,Long> {
+    boolean existsByAuthorAndText(String author, String text);
 }
 
