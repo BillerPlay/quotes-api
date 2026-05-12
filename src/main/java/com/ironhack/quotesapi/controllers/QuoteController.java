@@ -7,6 +7,7 @@ import com.ironhack.quotesapi.entity.Quote;
 import com.ironhack.quotesapi.repositories.QuoteRepository;
 import com.ironhack.quotesapi.services.QuoteService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class QuoteController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public QuoteResponse create(@RequestBody QuoteRequest request) {
         return quoteService.createQuote(request);
     }
