@@ -1,0 +1,43 @@
+services:
+  app:
+    build: .
+    container_name: quotes-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_URL: jdbc:mysql://db:3306/quotesdb?useSSL=false&allowPublicKeyRetrieval=true
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - quotes-network
+
+  db:
+    image: mysql:8.0
+    container_name: quotes-db
+    environment:
+      MYSQL_DATABASE: quotesdb
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - quotes-db-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - quotes-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+networks:
+  quotes-network:
+    driver: bridge
+
+volumes:
+  quotes-db-data:
