@@ -106,9 +106,15 @@ GET /api/quotes
   }
 ]
 ```
-
 ---
+## 🔒 Soft Delete Feature
 
+This project uses **Soft Delete** instead of permanently removing data from the database.
+
+*   **How it works:** When you delete a quote, it isn't actually gone. Instead, a hidden flag (`is_deleted`) is set to `true`.
+*   **Why?** This prevents accidental data loss and allows for easy data recovery if needed.
+*   **Hibernate 6 @SoftDelete:** We used the latest Hibernate feature to handle this automatically. When you try to get quotes, the system is smart enough to only show you the ones that haven't been deleted yet.
+---
 ## Local Development (Docker)
 
 ### Prerequisites
