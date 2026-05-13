@@ -20,8 +20,16 @@ public class QuoteService {
         this.quoteRepository = quoteRepository;
     }
 
-    public List<QuoteResponse> getAllQuotes(){
-        return quoteRepository.findAll().stream().map(quote -> {
+    public List<QuoteResponse> searchQuotes(String search){
+        List<Quote> quotes;
+
+        if(search == null || search.trim().isEmpty()){
+            quotes = quoteRepository.findAll();
+        } else{
+            quotes = quoteRepository.searchByKeywordNative(search);
+        }
+
+        return quotes.stream().map(quote -> {
             QuoteResponse response = new QuoteResponse();
             response.setId(quote.getId());
             response.setAuthor(quote.getAuthor());
