@@ -1,4 +1,5 @@
 # Quotes API
+![Actions app ci](https://github.com/BillerPlay/quotes-api/actions/workflows/ci.yml/badge.svg)
 
 A production-ready Spring Boot REST API for managing quotes, built with Java 17, MySQL (local), PostgreSQL (production), and deployed on Render.
 
