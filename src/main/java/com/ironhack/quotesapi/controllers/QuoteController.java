@@ -22,8 +22,8 @@ public class QuoteController {
     }
 
     @GetMapping
-    public List<QuoteResponse> getAll() {
-        return quoteService.getAllQuotes();
+    public List<QuoteResponse> getAll(@RequestParam(name = "search" ,required = false) String search) {
+        return quoteService.searchQuotes(search);
     }
 
     @GetMapping("/{id}")
