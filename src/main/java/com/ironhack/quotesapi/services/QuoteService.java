@@ -7,10 +7,9 @@ import com.ironhack.quotesapi.entity.Quote;
 import com.ironhack.quotesapi.exceptions.ConflictException;
 import com.ironhack.quotesapi.exceptions.ResourceNotFoundException;
 import com.ironhack.quotesapi.repositories.QuoteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class QuoteService {
@@ -20,16 +19,16 @@ public class QuoteService {
         this.quoteRepository = quoteRepository;
     }
 
-    public List<QuoteResponse> searchQuotes(String search){
-        List<Quote> quotes;
+    public Page<QuoteResponse> getQuotes(String search, Pageable pageable) {
+        Page<Quote> quotePage;
 
         if(search == null || search.trim().isEmpty()){
-            quotes = quoteRepository.findAll();
+            quotePage = quoteRepository.findAll(pageable);
         } else{
-            quotes = quoteRepository.searchByKeywordNative(search);
+            quotePage = quoteRepository.searchByKeywordNative(search, pageable);
         }
 
-        return quotes.stream().map(quote -> {
+        return quotePage.map(quote -> {
             QuoteResponse response = new QuoteResponse();
             response.setId(quote.getId());
             response.setAuthor(quote.getAuthor());
@@ -37,7 +36,7 @@ public class QuoteService {
             response.setCategory(quote.getCategory());
             response.setCreatedAt(quote.getCreatedAt());
             return response;
-        }).collect(Collectors.toList());
+        });
     }
 
     public QuoteResponse getQuoteById(Long id){
