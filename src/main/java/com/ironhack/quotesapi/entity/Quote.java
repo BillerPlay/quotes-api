@@ -7,9 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SoftDelete;
 
 import java.time.LocalDateTime;
-
+@SoftDelete(columnName = "is_deleted")
 @Entity
 public class Quote {
     @Id
