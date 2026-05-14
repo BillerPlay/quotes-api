@@ -3,14 +3,13 @@ package com.ironhack.quotesapi.controllers;
 import com.ironhack.quotesapi.dtos.request.QuoteRequest;
 import com.ironhack.quotesapi.dtos.request.QuoteUpdateRequest;
 import com.ironhack.quotesapi.dtos.response.QuoteResponse;
-import com.ironhack.quotesapi.entity.Quote;
-import com.ironhack.quotesapi.repositories.QuoteRepository;
 import com.ironhack.quotesapi.services.QuoteService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/quotes")
@@ -22,8 +21,10 @@ public class QuoteController {
     }
 
     @GetMapping
-    public List<QuoteResponse> getAll() {
-        return quoteService.getAllQuotes();
+    public Page<QuoteResponse> getAll(
+            @RequestParam(name = "search" ,required = false) String search,
+            Pageable pageable) {
+        return quoteService.getQuotes(search,pageable);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +38,7 @@ public class QuoteController {
         return quoteService.createQuote(request);
     }
 
-    @PutMapping
+    @PutMapping ("/{id}")
     public QuoteResponse update(@PathVariable Long id,@Valid @RequestBody QuoteUpdateRequest request) {
         return quoteService.updateQuote(id, request);
     }

@@ -3,7 +3,7 @@
 
 A production-ready Spring Boot REST API for managing quotes, built with Java 17, MySQL (local), PostgreSQL (production), and deployed on Render.
 
-🚀 **Live Demo:** `https://your-app.onrender.com` ← _replace after deploy_
+🚀 **Live Demo:** `https://quotes-api-iyuq.onrender.com/`
 
 📋 **Project Board:** [Trello](https://trello.com/b/qDntxOQgit branch -aJ/quotes-api)
 
@@ -173,7 +173,7 @@ The pipeline status is shown as a badge on the repo.
 3. Configure:
 
    | Field | Value |
-      |---|---|
+         |---|---|
    | Name | `quote-management-db` |
    | Region | e.g. **Frankfurt (EU Central)** — note it for Step 2 |
    | PostgreSQL Version | `16` |
@@ -195,7 +195,7 @@ The pipeline status is shown as a badge on the repo.
 3. Configure:
 
    | Field | Value |
-      |---|---|
+         |---|---|
    | Name | `quote-management-system` |
    | Region | **Same as your database** |
    | Environment | **Docker** |
@@ -204,8 +204,10 @@ The pipeline status is shown as a badge on the repo.
 4. Under the **"Environment"** tab, add:
 
    | Key | Value |
-      |---|---|
-   | `DATABASE_URL` | Internal Database URL from Step 1 |
+         |---|---|
+   | `SPRING_DATASOURCE_URL` | from Render DB |
+   | `SPRING_DATASOURCE_USERNAME` | from Render DB |
+   | `SPRING_DATASOURCE_PASSWORD` | from Render DB |
    | `SPRING_PROFILES_ACTIVE` | `prod` |
 
 5. Click **"Create Web Service"**
