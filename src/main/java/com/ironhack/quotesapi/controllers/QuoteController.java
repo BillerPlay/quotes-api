@@ -34,7 +34,7 @@ public class QuoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public QuoteResponse create(@RequestBody QuoteRequest request) {
+    public QuoteResponse create(@Valid @RequestBody QuoteRequest request) {
         return quoteService.createQuote(request);
     }
 
