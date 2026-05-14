@@ -1,8 +1,11 @@
 package com.ironhack.quotesapi.dtos.response;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
 public class ErrorResponse {
     private int status;
     private String error;
@@ -25,5 +28,6 @@ public class ErrorResponse {
         this.details = details;
         this.timestamp = LocalDateTime.now();
     }
+
 
 }
