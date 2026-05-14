@@ -195,7 +195,7 @@ The pipeline status is shown as a badge on the repo.
 3. Configure:
 
    | Field | Value |
-         |---|---|
+   |---|---|
    | Name | `quote-management-system` |
    | Region | **Same as your database** |
    | Environment | **Docker** |
@@ -204,7 +204,7 @@ The pipeline status is shown as a badge on the repo.
 4. Under the **"Environment"** tab, add:
 
    | Key | Value |
-         |---|---|
+   |---|---|
    | `SPRING_DATASOURCE_URL` | from Render DB |
    | `SPRING_DATASOURCE_USERNAME` | from Render DB |
    | `SPRING_DATASOURCE_PASSWORD` | from Render DB |
