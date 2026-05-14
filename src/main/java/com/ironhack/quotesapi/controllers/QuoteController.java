@@ -38,7 +38,7 @@ public class QuoteController {
         return quoteService.createQuote(request);
     }
 
-    @PutMapping
+    @PutMapping ("/{id}")
     public QuoteResponse update(@PathVariable Long id,@Valid @RequestBody QuoteUpdateRequest request) {
         return quoteService.updateQuote(id, request);
     }
