@@ -29,9 +29,9 @@ POST /api/quotes
 
 ```json
 {
-  "author": "Marcus Aurelius",
-  "text": "The impediment to action advances action. What stands in the way becomes the way.",
-  "category": "philosophy"
+   "author": "Marcus Aurelius",
+   "text": "The impediment to action advances action. What stands in the way becomes the way.",
+   "category": "philosophy"
 }
 ```
 
@@ -63,7 +63,7 @@ PUT /api/quotes/:id
 
 ```json
 {
-  "category": "stoicism"
+   "category": "stoicism"
 }
 ```
 
@@ -92,19 +92,43 @@ DELETE /api/quotes/:id
 GET /api/quotes
 ```
 
+**Query Parameters:**
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `search` | string | No | Filters quotes by keyword (matches author, text, or category — case-insensitive) |
+| `page` | integer | No | Page number, zero-based (default: `0`) |
+| `size` | integer | No | Number of results per page (default: `20`) |
+| `sort` | string | No | Sort field and direction, e.g. `createdAt,desc` |
+
+**Examples:**
+
+```
+GET /api/quotes                          → all quotes, first page
+GET /api/quotes?search=stoic            → quotes matching "stoic"
+GET /api/quotes?page=1&size=5           → second page, 5 per page
+GET /api/quotes?search=marcus&size=10   → search with custom page size
+```
+
 **Responses:**
-- `200 OK` — returns an array of all quotes
+- `200 OK` — returns a paginated object
 
 ```json
-[
-  {
-    "id": 1,
-    "author": "Marcus Aurelius",
-    "text": "The impediment to action advances action.",
-    "category": "philosophy",
-    "createdAt": "2026-05-12T10:00:00"
-  }
-]
+{
+  "content": [
+    {
+      "id": 1,
+      "author": "Marcus Aurelius",
+      "text": "The impediment to action advances action.",
+      "category": "philosophy",
+      "createdAt": "2026-05-12T10:00:00"
+    }
+  ],
+  "totalElements": 42,
+  "totalPages": 5,
+  "size": 10,
+  "number": 0
+}
 ```
 ---
 ## 🔒 Soft Delete Feature
