@@ -5,7 +5,7 @@ A production-ready Spring Boot REST API for managing quotes, built with Java 17,
 
 🚀 **Live Demo:** `https://quotes-api-iyuq.onrender.com/`
 
-📋 **Project Board:** [Trello](https://trello.com/b/qDntxOQgit)
+📋 **Project Board:** [Trello](https://trello.com/invite/b/6a030943e050b18e994707b1/ATTI24c56b9e164ed39f1bf4bfa236c6a5816E6BDF3D/quotes-api)
 
 🤖 **Postman collection:** [Postman](https://documenter.getpostman.com/view/52828273/2sBXqQFy1y) 
 
